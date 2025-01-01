@@ -4,24 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karan Jung Budhathoki - Full Stack Developer</title>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- GSAP Animation Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    
-    <!-- Three.js for 3D Effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Custom Styles -->
     <style>
         :root {
             --primary-color: #3498db;
@@ -134,7 +122,7 @@
             45% { clip: rect(58px, 9999px, 31px, 0); }
         }
 
-        /* Custom Cursor */
+        
         .custom-cursor {
             position: fixed;
             width: 20px;
@@ -146,22 +134,47 @@
             z-index: 1000;
             transition: transform 0.1s ease;
         }
+
+       
+        @media (max-width: 768px) {
+            nav .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav .space-x-6 {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            nav .space-x-6 a {
+                margin: 0.5rem 0;
+            }
+            nav .menu-toggle {
+                display: block;
+                cursor: pointer;
+            }
+            nav .menu-toggle i {
+                font-size: 1.5rem;
+            }
+            nav .space-x-6.active {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#1a1a2e] text-gray-100">
-    <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
-
-    <!-- Particle Background -->
     <div id="particles-js"></div>
-
-    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-[#16213e] shadow-lg">
         <div class="container mx-auto flex justify-between items-center p-4">
             <div class="text-2xl font-bold text-[#0f3460]">
                 <span class="glitch-text" data-text="Karan Jung">Karan Jung</span>
             </div>
-            <div class="space-x-6 text-[#e94560]">
+            <div class="menu-toggle md:hidden">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="space-x-6 text-[#e94560] hidden md:flex">
                 <a href="#home" class="hover:text-[#0f3460] transition">Home</a>
                 <a href="#about" class="hover:text-[#0f3460] transition">About</a>
                 <a href="#skills" class="hover:text-[#0f3460] transition">Skills</a>
@@ -170,26 +183,21 @@
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
     <header id="home" class="min-h-screen flex items-center justify-center relative pt-20">
-        <div class="container mx-auto text-center">
+        <div class="container mx-auto text-center px-4">
             <div class="mb-8 relative">
-                <!-- Profile Photo Container -->
-                <div class="mx-auto mb-8 w-64 h-64 rounded-full overflow-hidden border-4 border-[#0f3460] shadow-2xl transform transition-all duration-300 hover:scale-105">
+                
+                <div class="mx-auto mb-8 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#0f3460] shadow-2xl transform transition-all duration-300 hover:scale-105">
                     <img 
                         src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2024/12/USYjgWHkpujCsbur.JPG@300w_0e.jpg" 
                         alt="Karan Jung Budhathoki"
                         class="w-full h-full object-cover object-center"
                     />
                 </div>
-    
-                <h1 class="text-6xl font-bold mb-4 glitch-text" data-text="Karan Jung Budhathoki">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 glitch-text" data-text="Karan Jung Budhathoki">
                     Karan Jung Budhathoki
                 </h1>
-                
-                <!-- Animated Typing Effect for Subtitle -->
-                <div class="text-3xl">
+                <div class="text-2xl md:text-3xl">
                     <span 
                         id="typed-text" 
                         class="text-[#0f3460] font-semibold"
@@ -197,7 +205,6 @@
                     <span class="typing-cursor">|</span>
                 </div>
             </div>
-            
             <div class="flex justify-center space-x-6 text-3xl">
                 <a href="https://github.com/karanbudhathoki" target="_blank" class="text-[#e94560] hover:text-[#0f3460] transform transition-transform hover:scale-125">
                     <i class="fab fa-github"></i>
@@ -212,8 +219,6 @@
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>
-
-            <!-- Buy Me a Coffee Button -->
             <div class="mt-8 flex justify-center">
                 <a href="buymeacoffee.com/karanjung" target="_blank">
                     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 50px; width: 180px;">
@@ -221,18 +226,15 @@
             </div>
         </div>
     </header>
-
-    <!-- About Section -->
     <section id="about" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-10 rounded-lg shadow-2xl">
-            <h2 class="text-4xl mb-6 text-[#0f3460] text-center">About Me</h2>
+        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
+            <h2 class="text-3xl md:text-4xl mb-6 text-[#0f3460] text-center">About Me</h2>
             <div class="text-center max-w-3xl mx-auto">
-                <p class="text-xl leading-relaxed">
+                <p class="text-lg md:text-xl leading-relaxed">
                     I'm a passionate Full Stack Developer with expertise in Python Django, Java, HTML, and CSS which I truly enjoy.
                      During my time as a student, I often found myself searching through countless websites and online communities for free projects to use as inspiration for my college assignments and final year projects (FYP). However, the process wasn’t always easy, and I faced numerous challenges along the way.
-
                 </p>
-                <p class="text-xl leading-relaxed mt-4">
+                <p class="text-lg md:text-xl leading-relaxed mt-4">
                     Now, I want to give back to the community by helping students like you. I’m here to share free projects for your final year projects, complete with detailed video tutorials. These tutorials will guide you step by step on how to install, upload, and edit these projects to suit your needs. My goal is to make the process easier for you, so you can focus on learning and building something amazing!
                 </p>
                 <div class="mt-8 flex justify-center space-x-6">
@@ -248,73 +250,135 @@
             </div>
         </div>
     </section>
-
-    <!-- Skills Section -->
     <section id="skills" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-10 rounded-lg shadow-2xl">
-            <h2 class="text-4xl mb-8 text-[#0f3460] text-center">Technical Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
+            <h2 class="text-3xl md:text-4xl mb-8 text-[#0f3460] text-center">Technical Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-python text-4xl mb-2"></i>
-                    <h3 class="text-xl">Python Django</h3>
+                    <i class="fab fa-python text-3xl md:text-4xl mb-2"></i>
+                    <h3 class="text-lg md:text-xl">Python Django</h3>
                     <p class="text-sm">Advanced</p>
                 </div>
                 <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-java text-4xl mb-2"></i>
-                    <h3 class="text-xl">Java</h3>
+                    <i class="fab fa-java text-3xl md:text-4xl mb-2"></i>
+                    <h3 class="text-lg md:text-xl">Java</h3>
                     <p class="text-sm">Intermediate</p>
                 </div>
                 <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-html5 text-4xl mb-2"></i>
-                    <h3 class="text-xl">HTML</h3>
+                    <i class="fab fa-html5 text-3xl md:text-4xl mb-2"></i>
+                    <h3 class="text-lg md:text-xl">HTML</h3>
                     <p class="text-sm">Expert</p>
                 </div>
                 <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-css3-alt text-4xl mb-2"></i>
-                    <h3 class="text-xl">CSS</h3>
+                    <i class="fab fa-css3-alt text-3xl md:text-4xl mb-2"></i>
+                    <h3 class="text-lg md:text-xl">CSS</h3>
                     <p class="text-sm">Expert</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Projects Section -->
     <section id="projects" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-10 rounded-lg shadow-2xl">
-            <h2 class="text-4xl mb-8 text-[#0f3460] text-center">Featured Projects</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="project-card p-6">
-                    <h3 class="text-2xl mb-4 text-[#e94560]">Diabetes Prediction System</h3>
+        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
+            <h2 class="text-3xl md:text-4xl mb-8 text-[#0f3460] text-center">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="project-card p-4 md:p-6">
+                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Diabetes Prediction System</h3>
                     <p class="mb-4">Advanced machine learning project using Django for predicting diabetes.</p>
                     <div class="flex justify-between">
                         <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
                             View Details
                         </a>
                         <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-2xl"></i>
+                            <i class="fab fa-github text-xl md:text-2xl"></i>
                         </a>
                     </div>
                 </div>
-                <div class="project-card p-6">
-                    <h3 class="text-2xl mb-4 text-[#e94560]">Student College Finder</h3>
+                <div class="project-card p-4 md:p-6">
+                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Chat System</h3>
+                    <p class="mb-4">Real-time messaging using Flask/Django with WebSocket or libraries like Flask-SocketIO.</p>
+                    <div class="flex justify-between">
+                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
+                            View Details
+                        </a>
+                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
+                            <i class="fab fa-github text-xl md:text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card p-4 md:p-6">
+                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">E-Commerce Website</h3>
+                    <p class="mb-4">User authentication, product listing, cart, wishlist, payment integration, and admin dashboard..</p>
+                    <div class="flex justify-between">
+                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
+                            View Details
+                        </a>
+                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
+                            <i class="fab fa-github text-xl md:text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card p-4 md:p-6">
+                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Machine Learning Model Deployment</h3>
+                    <p class="mb-4">Deploy an ML model for tasks like sentiment analysis or image classification, Upload datasets, real-time predictions, and visualization of model results.</p>
+                    <div class="flex justify-between">
+                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
+                            View Details
+                        </a>
+                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
+                            <i class="fab fa-github text-xl md:text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card p-4 md:p-6">
+                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Student College Finder</h3>
                     <p class="mb-4">Web application for finding and comparing colleges using PHP and JavaScript.</p>
                     <div class="flex justify-between">
                         <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
                             View Details
                         </a>
                         <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-2xl"></i>
+                            <i class="fab fa-github text-xl md:text-2xl"></i>
                         </a>
                     </div>
                 </div>
+
+                <div class="project-card p-4 md:p-6">
+                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Online Multiplayer Game</h3>
+                    <p class="mb-4">A browser-based real-time multiplayer game with Live chat, leaderboards, and user authentication.</p>
+                    <div class="flex justify-between">
+                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
+                            View Details
+                        </a>
+                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
+                            <i class="fab fa-github text-xl md:text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card p-4 md:p-6">
+                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Custom Recommendation System</h3>
+                    <p class="mb-4">A platform recommending products, movies, or courses User personalization and dynamic recommendations.</p>
+                    <div class="flex justify-between">
+                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
+                            View Details
+                        </a>
+                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
+                            <i class="fab fa-github text-xl md:text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-10 rounded-lg shadow-2xl">
-            <h2 class="text-4xl mb-8 text-[#0f3460] text-center">Contact Me</h2>
+        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
+            <h2 class="text-3xl md:text-4xl mb-8 text-[#0f3460] text-center">Contact Me</h2>
             <div class="max-w-lg mx-auto">
                 <form id="contact-form" class="space-y-4">
                     <div>
@@ -334,13 +398,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-[#0f3460] py-6 text-center">
         <p>&copy; 2025 Karan Jung Budhathoki. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Particle.js Configuration
+
         particlesJS('particles-js', {
             particles: {
                 number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -358,7 +421,7 @@
             }
         });
 
-        // GSAP Animations
+    
         gsap.registerPlugin(ScrollTrigger);
 
         gsap.utils.toArray('.glitch-text').forEach(element => {
@@ -400,18 +463,18 @@
             }
         }
 
-        // Start the typing animation
+    
         const typedTextElement = document.getElementById('typed-text');
         typeWriter(typedTextElement, phrases[0]);
 
-        // Custom Cursor
+       
         const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.pageX + 'px';
             cursor.style.top = e.pageY + 'px';
         });
 
-        // Contact Form Submission
+     
         const contactForm = document.getElementById('contact-form');
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -420,6 +483,14 @@
             const message = document.getElementById('message').value;
             alert(`Thank you, ${name}! Your message has been sent.`);
             contactForm.reset();
+        });
+
+        
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.space-x-6');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
         });
     </script>
 </body>
