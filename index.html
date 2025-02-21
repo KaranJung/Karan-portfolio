@@ -1,510 +1,1103 @@
+<!-- Welcome To the View-Source There is a hidden feature find it-->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karan Jung Budhathoki</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karan Jung Budhathoki | Creative Developer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/vapor/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --background-dark: #1a1a2e;
-            --text-light: #e0e0e0;
+      :root {
+        --primary: #00ff00;
+        --secondary: #ff00ff;
+        --info: #00ffff;
+        --dark: #0a0a0a;
+        --light: #f0f0f0;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--dark);
+        color: var(--light);
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Orbitron", sans-serif;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(0, 255, 0, 0.15) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 0, 255, 0.15) 0%,
+            transparent 70%
+          );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Custom Navbar */
+      .navbar {
+        background: rgba(10, 10, 10, 0.8) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+      }
+
+      /* Progress Bars */
+      .progress {
+        background-color: rgba(255, 255, 255, 0.1);
+        height: 8px;
+        overflow: visible;
+      }
+
+      .progress-bar {
+        background-image: linear-gradient(
+          90deg,
+          var(--primary),
+          var(--secondary)
+        );
+        position: relative;
+        overflow: visible;
+      }
+
+      .progress-bar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 8px 8px 0;
+        border-color: transparent var(--secondary) transparent transparent;
+      }
+
+      /* Cards */
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+      }
+
+      /* Buttons */
+      .btn {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: all 0.5s;
+        z-index: -1;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-outline-light {
+        border-color: var(--info);
+        color: var(--info);
+      }
+
+      .btn-outline-light:hover {
+        background-color: var(--info);
+        color: var(--dark);
+      }
+
+      /* Glowing effects */
+      .glow-text {
+        text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary),
+          0 0 30px var(--primary);
+      }
+
+      .glow-border {
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 10px var(--primary), inset 0 0 10px var(--primary);
+      }
+
+      /* Animated background */
+      .cyber-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            rgba(0, 255, 0, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.1;
+        animation: gridMove 20s linear infinite;
+      }
+
+      @keyframes gridMove {
+        0% {
+          transform: translateY(0);
         }
-        
-        body {
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            perspective: 1px;
+        100% {
+          transform: translateY(50px);
         }
-        
-        .tech-badge {
-            background: linear-gradient(145deg, 
-                rgba(62, 207, 142, 0.2), 
-                rgba(52, 152, 219, 0.2)
-            );
-            border: 1px solid var(--secondary-color);
-            color: var(--secondary-color);
-            transition: all 0.3s ease;
+      }
+
+      /* Custom section styles */
+      .section-title {
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 2rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      /* Skill cards */
+      .skill-card {
+        background: rgba(0, 255, 0, 0.1);
+        border: 1px solid rgba(0, 255, 0, 0.2);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+      }
+
+      .skill-card i {
+        color: var(--primary);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Project cards */
+      .project-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+      }
+
+      .project-image {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-image img {
+        transition: transform 0.6s ease;
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.1);
+      }
+
+      .project-overlay-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(10, 10, 10, 0) 0%,
+          rgba(10, 10, 10, 0.8) 100%
+        );
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+
+      .project-card:hover .project-overlay-bg {
+        opacity: 0.95;
+      }
+
+      .project-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .tech-stack .badge {
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border: 1px solid rgba(0, 255, 0, 0.2);
+        background-color: rgba(0, 255, 0, 0.1);
+        color: var(--primary);
+      }
+
+      .project-hover-effect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(0, 255, 0, 0.1),
+          rgba(255, 0, 255, 0.1)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .project-card:hover .project-hover-effect {
+        opacity: 1;
+      }
+
+      /* Contact form */
+      .form-control {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 255, 0, 0.2);
+        color: var(--light);
+      }
+
+      .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--primary);
+        color: var(--light);
+        box-shadow: 0 0 0 0.25rem rgba(0, 255, 0, 0.25);
+      }
+
+      /* Social links */
+      .social-links a {
+        color: var(--light);
+        font-size: 1.5rem;
+        margin: 0 0.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--secondary);
+      }
+
+      /* Circular photo */
+      .circular-photo {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--primary);
+        box-shadow: 0 0 20px var(--primary);
+        transition: all 0.3s ease;
+        margin: 0 auto;
+      }
+
+      .circular-photo:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px var(--secondary);
+      }
+
+      .circular-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Typing animation */
+      .typing-text::after {
+        content: "|";
+        animation: blink 0.7s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
         }
-        
-        .tech-badge:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        50% {
+          opacity: 0;
         }
-        
-        .project-card {
-            background: linear-gradient(
-                135deg, 
-                rgba(30, 30, 60, 0.8), 
-                rgba(20, 20, 40, 0.8)
-            );
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            top: 0;
-            left: 0;
-        }
-        
-        .glitch-text {
-            position: relative;
-            color: var(--text-light);
-        }
-        
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
-        }
-        
-        .glitch-text::before {
-            left: 2px;
-            text-shadow: -2px 0 red;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        
-        .glitch-text::after {
-            left: -2px;
-            text-shadow: -2px 0 blue;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-            0% { clip: rect(61px, 9999px, 52px, 0); }
-            5% { clip: rect(33px, 9999px, 33px, 0); }
-            10% { clip: rect(14px, 9999px, 33px, 0); }
-            15% { clip: rect(54px, 9999px, 52px, 0); }
-            20% { clip: rect(43px, 9999px, 29px, 0); }
-            25% { clip: rect(12px, 9999px, 61px, 0); }
-            30% { clip: rect(37px, 9999px, 16px, 0); }
-            35% { clip: rect(53px, 9999px, 55px, 0); }
-            40% { clip: rect(5px, 9999px, 54px, 0); }
-            45% { clip: rect(58px, 9999px, 14px, 0); }
-        }
-        
-        @keyframes glitch-anim2 {
-            0% { clip: rect(29px, 9999px, 61px, 0); }
-            5% { clip: rect(58px, 9999px, 12px, 0); }
-            10% { clip: rect(54px, 9999px, 55px, 0); }
-            15% { clip: rect(16px, 9999px, 44px, 0); }
-            20% { clip: rect(43px, 9999px, 31px, 0); }
-            25% { clip: rect(12px, 9999px, 52px, 0); }
-            30% { clip: rect(37px, 9999px, 22px, 0); }
-            35% { clip: rect(53px, 9999px, 14px, 0); }
-            40% { clip: rect(5px, 9999px, 44px, 0); }
-            45% { clip: rect(58px, 9999px, 31px, 0); }
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
         }
 
-        
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            transition: transform 0.1s ease;
+        .hero p {
+          font-size: 1rem;
         }
 
-       
-        @media (max-width: 768px) {
-            nav .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            nav .space-x-6 {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-            }
-            nav .space-x-6 a {
-                margin: 0.5rem 0;
-            }
-            nav .menu-toggle {
-                display: block;
-                cursor: pointer;
-            }
-            nav .menu-toggle i {
-                font-size: 1.5rem;
-            }
-            nav .space-x-6.active {
-                display: flex;
-            }
+        .btn-group {
+          flex-wrap: wrap;
         }
+
+        .btn-group .btn {
+          margin-bottom: 0.5rem;
+        }
+
+        .circular-photo {
+          width: 200px;
+          height: 200px;
+        }
+      }
     </style>
-</head>
-<body class="bg-[#1a1a2e] text-gray-100">
-    <div class="custom-cursor"></div>
-    <div id="particles-js"></div>
-    <nav class="fixed top-0 w-full z-50 bg-[#16213e] shadow-lg">
-        <div class="container mx-auto flex justify-between items-center p-4">
-            <div class="text-2xl font-bold text-[#0f3460]">
-                <span class="glitch-text" data-text="Karan Jung">Karan Jung</span>
-            </div>
-            <div class="menu-toggle md:hidden">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="space-x-6 text-[#e94560] hidden md:flex">
-                <a href="#home" class="hover:text-[#0f3460] transition">Home</a>
-                <a href="#about" class="hover:text-[#0f3460] transition">About</a>
-                <a href="#skills" class="hover:text-[#0f3460] transition">Skills</a>
-                <a href="#projects" class="hover:text-[#0f3460] transition">Projects</a>
-                <a href="#contact" class="hover:text-[#0f3460] transition">Contact</a>
-            </div>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand glow-text" href="#">KJB</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
-    <header id="home" class="min-h-screen flex items-center justify-center relative pt-20">
-        <div class="container mx-auto text-center px-4">
-            <div class="mb-8 relative">
-                
-                <div class="mx-auto mb-8 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#0f3460] shadow-2xl transform transition-all duration-300 hover:scale-105">
-                    <img 
-                        src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2024/12/USYjgWHkpujCsbur.JPG@300w_0e.jpg" 
-                        alt="Karan Jung Budhathoki"
-                        class="w-full h-full object-cover object-center"
-                    />
-                </div>
-                <h1 class="text-4xl md:text-6xl font-bold mb-4 glitch-text" data-text="Karan Jung Budhathoki">
-                    Karan Jung Budhathoki
-                </h1>
-                <div class="text-2xl md:text-3xl">
-                    <span 
-                        id="typed-text" 
-                        class="text-[#0f3460] font-semibold"
-                    ></span>
-                    <span class="typing-cursor">|</span>
-                </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero d-flex align-items-center">
+      <div class="cyber-grid"></div>
+      <div class="container">
+        <div class="row min-vh-100 align-items-center">
+          <div class="col-lg-8 mx-auto text-center hero-content">
+            <h1 class="display-3 fw-bold mb-4 glow-text">
+              Karan Jung Budhathoki
+            </h1>
+            <p class="lead mb-4 typing-text" id="job-titles"></p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <a href="#projects" class="btn btn-primary btn-lg px-4 me-sm-3"
+                >View My Work</a
+              >
+              <a href="#contact" class="btn btn-outline-light btn-lg px-4"
+                >Get In Touch</a
+              >
+              <a
+                href="Karan_Jung_Budhathoki_CV.pdf"
+                class="btn btn-secondary btn-lg px-4"
+                download
+              >
+                <i class="fas fa-download me-2"></i>Download CV
+              </a>
             </div>
-            <div class="flex justify-center space-x-6 text-3xl">
-                <a href="https://github.com/KaranJung?tab=repositories" target="_blank" class="text-[#e94560] hover:text-[#0f3460] transform transition-transform hover:scale-125">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/karanbudhathoki" target="_blank" class="text-[#e94560] hover:text-[#0f3460] transform transition-transform hover:scale-125">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.youtube.com/@KaranTech011" target="_blank" class="text-[#e94560] hover:text-[#0f3460] transform transition-transform hover:scale-125">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="mailto:underside001@gmail.com" class="text-[#e94560] hover:text-[#0f3460] transform transition-transform hover:scale-125">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-            <div class="mt-8 flex justify-center">
-                <a href="buymeacoffee.com/karanjung" target="_blank">
-                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 50px; width: 180px;">
-                </a>
-            </div>
+          </div>
         </div>
-    </header>
-    <section id="about" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
-            <h2 class="text-3xl md:text-4xl mb-6 text-[#0f3460] text-center">About Me</h2>
-            <div class="text-center max-w-3xl mx-auto">
-                <p class="text-lg md:text-xl leading-relaxed">
-                    I'm a passionate Full Stack Developer with expertise in Python Django, Java, HTML, and CSS which I truly enjoy.
-                     During my time as a student, I often found myself searching through countless websites and online communities for free projects to use as inspiration for my college assignments and final year projects (FYP). However, the process wasn’t always easy, and I faced numerous challenges along the way.
-                </p>
-                <p class="text-lg md:text-xl leading-relaxed mt-4">
-                    Now, I want to give back to the community by helping students like you. I’m here to share free projects for your final year projects, complete with detailed video tutorials. These tutorials will guide you step by step on how to install, upload, and edit these projects to suit your needs. My goal is to make the process easier for you, so you can focus on learning and building something amazing!
-                </p>
-                <div class="mt-8 flex justify-center space-x-6">
-                    <div class="text-center">
-                        <h3 class="text-2xl text-[#e94560]">3+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-2xl text-[#e94560]">10+</h3>
-                        <p>Completed Projects</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="skills" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
-            <h2 class="text-3xl md:text-4xl mb-8 text-[#0f3460] text-center">Technical Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-python text-3xl md:text-4xl mb-2"></i>
-                    <h3 class="text-lg md:text-xl">Python Django</h3>
-                    <p class="text-sm">Advanced</p>
-                </div>
-                <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-java text-3xl md:text-4xl mb-2"></i>
-                    <h3 class="text-lg md:text-xl">Java</h3>
-                    <p class="text-sm">Intermediate</p>
-                </div>
-                <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-html5 text-3xl md:text-4xl mb-2"></i>
-                    <h3 class="text-lg md:text-xl">HTML</h3>
-                    <p class="text-sm">Expert</p>
-                </div>
-                <div class="tech-badge p-4 rounded-lg text-center">
-                    <i class="fab fa-css3-alt text-3xl md:text-4xl mb-2"></i>
-                    <h3 class="text-lg md:text-xl">CSS</h3>
-                    <p class="text-sm">Expert</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="projects" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
-            <h2 class="text-3xl md:text-4xl mb-8 text-[#0f3460] text-center">Featured Projects</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Diabetes Prediction System</h3>
-                    <p class="mb-4">Advanced machine learning project using Django for predicting diabetes.</p>
-                    <div class="flex justify-between">
-                        <a href="https://github.com/KaranJung/Diabetes-Predictions-system-using-machine-learning.git" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Chat System</h3>
-                    <p class="mb-4">Real-time messaging using Flask/Django with WebSocket or libraries like Flask-SocketIO.</p>
-                    <div class="flex justify-between">
-                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">E-Commerce Admin Frontend</h3>
-                    <p class="mb-4">This a frontend of admin panel connect to the database and get started with better UI.</p>
-                    <div class="flex justify-between">
-                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="https://github.com/KaranJung/Admin-frontend.git" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Machine Learning Model Deployment</h3>
-                    <p class="mb-4">Deploy an ML model for tasks like sentiment analysis or image classification, Upload datasets, real-time predictions, and visualization of model results.</p>
-                    <div class="flex justify-between">
-                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Student College Finder</h3>
-                    <p class="mb-4">Web application for finding and comparing colleges using PHP and JavaScript.</p>
-                    <div class="flex justify-between">
-                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="https://github.com/KaranJung/Student-College-Finder.git" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Online Multiplayer Game</h3>
-                    <p class="mb-4">A browser-based real-time multiplayer game with Live chat, leaderboards, and user authentication.</p>
-                    <div class="flex justify-between">
-                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Custom Recommendation System</h3>
-                    <p class="mb-4">A platform recommending products, movies, or courses User personalization and dynamic recommendations.</p>
-                    <div class="flex justify-between">
-                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card p-4 md:p-6">
-                    <h3 class="text-xl md:text-2xl mb-4 text-[#e94560]">Genrate a CV</h3>
-                    <p class="mb-4">It allows user to generate a Normal CV.</p>
-                    <div class="flex justify-between">
-                        <a href="#" class="bg-[#0f3460] px-4 py-2 rounded hover:bg-[#e94560] transition">
-                            View Details
-                        </a>
-                        <a href="#" class="text-[#e94560] hover:text-[#0f3460]">
-                            <i class="fab fa-github text-xl md:text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
+      </div>
     </section>
 
-    <section id="contact" class="container mx-auto my-20 px-4">
-        <div class="bg-[#16213e] p-6 md:p-10 rounded-lg shadow-2xl">
-            <h2 class="text-3xl md:text-4xl mb-8 text-[#0f3460] text-center">Contact Me</h2>
-            <div class="max-w-lg mx-auto">
-                <form id="contact-form" class="space-y-4">
-                    <div>
-                        <input type="text" id="name" name="name" placeholder="Your Name" class="w-full px-4 py-2 rounded-lg bg-[#0f3460] text-white">
-                    </div>
-                    <div>
-                        <input type="email" id="email" name="email" placeholder="Your Email" class="w-full px-4 py-2 rounded-lg bg-[#0f3460] text-white">
-                    </div>
-                    <div>
-                        <textarea id="message" name="message" rows="4" placeholder="Your Message" class="w-full px-4 py-2 rounded-lg bg-[#0f3460] text-white"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-[#e94560] px-4 py-2 rounded-lg hover:bg-[#0f3460] transition">
-                        Send Message
-                    </button>
-                </form>
+    <!-- About Section -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="circular-photo">
+              <img src="karan.JPG" alt="Karan Jung Budhathoki" />
             </div>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="section-title">About Me</h2>
+            <p class="lead">
+              Hello! I'm Karan, a passionate developer with a knack for creating
+              innovative digital solutions.
+            </p>
+            <p>
+              With a background in Computer Applications and years of hands-on
+              experience, I specialize in crafting user-centric web and mobile
+              applications. My journey in tech has been driven by curiosity and
+              a constant desire to learn.
+            </p>
+            <p>
+              I thrive on challenges and love turning complex problems into
+              elegant, efficient solutions.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <footer class="bg-[#0f3460] py-6 text-center">
-        <p>&copy; 2025 Karan Jung Budhathoki. All Rights Reserved.</p>
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-dark">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">Technical Arsenal</h2>
+        <div class="row g-4">
+          <!-- Frontend Skills -->
+          <div class="col-lg-6">
+            <div class="skill-card">
+              <i class="fas fa-code mb-3"></i>
+              <h3 class="h4 mb-3">Frontend Development</h3>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>HTML</span>
+                  <span>95%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="95"></div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>CSS</span>
+                  <span>90%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="90"></div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>JavaScript</span>
+                  <span>70%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="70"></div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>React</span>
+                  <span>40%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="40"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend Skills -->
+          <div class="col-lg-6">
+            <div class="skill-card">
+              <i class="fas fa-server mb-3"></i>
+              <h3 class="h4 mb-3">Backend Development</h3>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>PHP</span>
+                  <span>90%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="90"></div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>SQL</span>
+                  <span>95%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="95"></div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>Python</span>
+                  <span>80%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="80"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Development -->
+          <div class="col-lg-6">
+            <div class="skill-card">
+              <i class="fas fa-mobile-alt mb-3"></i>
+              <h3 class="h4 mb-3">Mobile Development</h3>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                  <span>Android</span>
+                  <span>60%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" data-value="60"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">Featured Projects</h2>
+
+        <!-- Project Categories -->
+        <div class="text-center mb-5">
+          <div class="btn-group" role="group" aria-label="Project categories">
+            <button
+              type="button"
+              class="btn btn-outline-info active"
+              data-filter="all"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-info"
+              data-filter="web"
+            >
+              Web
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-info"
+              data-filter="mobile"
+            >
+              Mobile
+            </button>
+            <button type="button" class="btn btn-outline-info" data-filter="ai">
+              AI/ML
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Project 1 -->
+          <div class="col-lg-6 mb-4" data-category="web">
+            <div
+              class="card project-card h-100 position-relative overflow-hidden"
+            >
+              <div class="project-card-inner">
+                <div class="project-image">
+                  <div class="project-overlay-bg"></div>
+                </div>
+                <div class="project-content p-4">
+                  <h3 class="h4 text-info mb-3">E-Commerce Platform</h3>
+                  <p class="mb-3">
+                    A full-stack e-commerce solution with advanced features
+                    including real-time inventory management, AI-powered
+                    recommendations, and seamless payment integration.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">React</span>
+                    <span class="badge bg-secondary">Node.js</span>
+                    <span class="badge bg-info">MongoDB</span>
+                    <span class="badge bg-warning">Redux</span>
+                    <span class="badge bg-danger">Stripe</span>
+                  </div>
+                  <div class="project-links d-flex gap-2">
+                    <a href="#" class="btn btn-info btn-sm">
+                      <i class="fas fa-globe me-2"></i>Live Demo
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-sm">
+                      <i class="fab fa-github me-2"></i>Source Code
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-hover-effect"></div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="col-lg-6 mb-4" data-category="mobile">
+            <div
+              class="card project-card h-100 position-relative overflow-hidden"
+            >
+              <div class="project-card-inner">
+                <div class="project-image">
+                  <div class="project-overlay-bg"></div>
+                </div>
+                <div class="project-content p-4">
+                  <h3 class="h4 text-info mb-3">Task Management App</h3>
+                  <p class="mb-3">
+                    A cross-platform mobile application for efficient task
+                    management with cloud sync, collaborative features, and
+                    smart task prioritization.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">React Native</span>
+                    <span class="badge bg-secondary">Firebase</span>
+                    <span class="badge bg-info">Redux</span>
+                    <span class="badge bg-warning">Push Notifications</span>
+                  </div>
+                  <div class="project-links d-flex gap-2">
+                    <a href="#" class="btn btn-info btn-sm">
+                      <i class="fab fa-google-play me-2"></i>Play Store
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-sm">
+                      <i class="fab fa-github me-2"></i>Source Code
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-hover-effect"></div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="col-lg-6 mb-4" data-category="ai">
+            <div
+              class="card project-card h-100 position-relative overflow-hidden"
+            >
+              <div class="project-card-inner">
+                <div class="project-image">
+                  <div class="project-overlay-bg"></div>
+                </div>
+                <div class="project-content p-4">
+                  <h3 class="h4 text-info mb-3">AI-Powered Chatbot</h3>
+                  <p class="mb-3">
+                    An intelligent chatbot system using natural language
+                    processing for automated customer support with sentiment
+                    analysis and multi-language support.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Python</span>
+                    <span class="badge bg-secondary">TensorFlow</span>
+                    <span class="badge bg-info">NLP</span>
+                    <span class="badge bg-warning">Docker</span>
+                  </div>
+                  <div class="project-links d-flex gap-2">
+                    <a href="#" class="btn btn-info btn-sm">
+                      <i class="fas fa-robot me-2"></i>Try Bot
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-sm">
+                      <i class="fab fa-github me-2"></i>Source Code
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-hover-effect"></div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="col-lg-6 mb-4" data-category="web">
+            <div
+              class="card project-card h-100 position-relative overflow-hidden"
+            >
+              <div class="project-card-inner">
+                <div class="project-image">
+                  <div class="project-overlay-bg"></div>
+                </div>
+                <div class="project-content p-4">
+                  <h3 class="h4 text-info mb-3">Analytics Dashboard</h3>
+                  <p class="mb-3">
+                    A real-time analytics dashboard with interactive
+                    visualizations, customizable widgets, and automated
+                    reporting capabilities.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Vue.js</span>
+                    <span class="badge bg-secondary">D3.js</span>
+                    <span class="badge bg-info">WebSocket</span>
+                    <span class="badge bg-warning">GraphQL</span>
+                  </div>
+                  <div class="project-links d-flex gap-2">
+                    <a href="#" class="btn btn-info btn-sm">
+                      <i class="fas fa-chart-line me-2"></i>Live Demo
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-sm">
+                      <i class="fab fa-github me-2"></i>Source Code
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-hover-effect"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-5 bg-dark text-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">Get in Touch</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <form
+              action="https://formsubmit.co/underside001%40gmail.com"
+              method="POST"
+              class="card p-4 shadow-lg"
+            >
+              <!-- Hidden fields for settings -->
+              <input type="hidden" name="_captcha" value="false" />
+              <input
+                type="hidden"
+                name="_next"
+                value="https://yourwebsite.com/thank-you.html"
+              />
+
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  placeholder="Write your message..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                Send Message
+              </button>
+            </form>
+            <div id="formMessage" class="text-center mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+      <div class="container text-center">
+        <div class="social-links mb-3">
+          <a href="https://github.com/KaranJung" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://www.facebook.com/profile.php?id=61572325914686"
+            target="_blank"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a href="https://www.youtube.com/@thebinarybrain-q1f" target="_blank"
+            ><i class="fab fa-youtube"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/karan_jung_budhathoki/"
+            target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+        <p class="small mb-0">
+          &copy; 2025 Karan Jung Budhathoki. All rights reserved.
+        </p>
+        <p class="small mb-0">Visitors: <span id="visitorCount">0</span></p>
+      </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const progressBars = document.querySelectorAll(".progress-bar");
 
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#e94560' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: { 
-                    enable: true, 
-                    distance: 150, 
-                    color: '#0f3460', 
-                    opacity: 0.4, 
-                    width: 1 
-                }
-            }
-        });
-
-    
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.utils.toArray('.glitch-text').forEach(element => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top 80%',
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const bar = entry.target;
+                const value = bar.getAttribute("data-value");
+                bar.style.width = value + "%";
+                bar.style.transition = "width 1.5s ease-in-out";
+                observer.unobserve(bar); // Stop observing once animated
+              }
             });
+          },
+          { threshold: 0.5 }
+        );
+
+        progressBars.forEach((bar) => {
+          bar.style.width = "0%"; // Start with empty bar
+          observer.observe(bar);
         });
+      });
 
-        const phrases = [
-            "Full Stack Developer",
-            "Tech Innovator", 
-            "Python Enthusiast", 
-            "Web Solutions Architect",
-            "Creative Coder"
-        ];
+      // Visitor Counter
+      document.addEventListener("DOMContentLoaded", function () {
+        let count = localStorage.getItem("visitorCount");
+        count = count ? parseInt(count) + 1 : 1;
+        localStorage.setItem("visitorCount", count);
+        document.getElementById("visitorCount").innerText = count;
+      });
 
-        function typeWriter(element, phrase, index = 0) {
-            if (index < phrase.length) {
-                element.textContent += phrase.charAt(index);
-                setTimeout(() => typeWriter(element, phrase, index + 1), 100);
-            } else {
-                setTimeout(() => eraseText(element, phrase), 2000);
-            }
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Typing animation
+      const jobTitles = [
+        "Creative Developer",
+        "Problem Solver",
+        "Tech Enthusiast",
+      ];
+      let currentTitleIndex = 0;
+      let currentCharIndex = 0;
+      const typingSpeed = 100; // milliseconds per character
+      const pauseBetweenTitles = 2000; // 2 seconds pause between titles
+
+      function typeNextCharacter() {
+        const currentTitle = jobTitles[currentTitleIndex];
+        const typingElement = document.getElementById("job-titles");
+
+        if (currentCharIndex < currentTitle.length) {
+          typingElement.textContent += currentTitle.charAt(currentCharIndex);
+          currentCharIndex++;
+          setTimeout(typeNextCharacter, typingSpeed);
+        } else {
+          setTimeout(eraseTitle, pauseBetweenTitles);
         }
+      }
 
-        function eraseText(element, phrase, index = phrase.length) {
-            if (index > 0) {
-                element.textContent = phrase.substring(0, index - 1);
-                setTimeout(() => eraseText(element, phrase, index - 1), 50);
-            } else {
-                const nextPhraseIndex = (phrases.indexOf(phrase) + 1) % phrases.length;
-                typeWriter(element, phrases[nextPhraseIndex]);
-            }
+      function eraseTitle() {
+        const typingElement = document.getElementById("job-titles");
+
+        if (typingElement.textContent.length > 0) {
+          typingElement.textContent = typingElement.textContent.slice(0, -1);
+          setTimeout(eraseTitle, typingSpeed / 2);
+        } else {
+          currentTitleIndex = (currentTitleIndex + 1) % jobTitles.length;
+          currentCharIndex = 0;
+          setTimeout(typeNextCharacter, typingSpeed);
         }
+      }
 
-    
-        const typedTextElement = document.getElementById('typed-text');
-        typeWriter(typedTextElement, phrases[0]);
+      // Start the typing animation
+      typeNextCharacter();
 
-       
-        const cursor = document.querySelector('.custom-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.pageX + 'px';
-            cursor.style.top = e.pageY + 'px';
+      // Progress bar animation
+      const progressBars = document.querySelectorAll(".progress-bar");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.width =
+                entry.target.getAttribute("aria-valuenow") + "%";
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      progressBars.forEach((bar) => {
+        bar.style.width = "0%";
+        observer.observe(bar);
+      });
+
+      // Navbar background change on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.style.background = "rgba(10, 10, 10, 0.95) !important";
+        } else {
+          navbar.style.background = "rgba(10, 10, 10, 0.8) !important";
+        }
+      });
+
+      // Project filtering
+      const projectFilters = document.querySelectorAll("[data-filter]");
+      const projectCards = document.querySelectorAll("[data-category]");
+
+      projectFilters.forEach((filter) => {
+        filter.addEventListener("click", () => {
+          // Update active button
+          projectFilters.forEach((btn) => btn.classList.remove("active"));
+          filter.classList.add("active");
+
+          // Filter projects
+          const filterValue = filter.getAttribute("data-filter");
+          projectCards.forEach((card) => {
+            if (
+              filterValue === "all" ||
+              card.getAttribute("data-category") === filterValue
+            ) {
+              card.style.display = "block";
+              setTimeout(() => (card.style.opacity = "1"), 50);
+            } else {
+              card.style.opacity = "0";
+              setTimeout(() => (card.style.display = "none"), 500);
+            }
+          });
         });
+      });
 
-     
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            alert(`Thank you, ${name}! Your message has been sent.`);
-            contactForm.reset();
-        });
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
 
-        
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.space-x-6');
+        const formData = new FormData(this);
+        const formMessage = document.getElementById("formMessage");
 
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+        // Create and show progress bar
+        formMessage.innerHTML = `
+                <div class="progress" style="height: 20px;">
+                    <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-info" 
+                         role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        0%
+                    </div>
+                </div>`;
+
+        const progressBar = document.getElementById("progressBar");
+
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.floor(Math.random() * 10) + 5; // Increase randomly between 5-15%
+          if (progress > 100) progress = 100;
+          progressBar.style.width = `${progress}%`;
+          progressBar.innerText = `${progress}%`;
+
+          if (progress >= 100) clearInterval(interval);
+        }, 300);
+
+        // Send the form data
+        fetch("https://formsubmit.co/ajax/underside001@gmail.com", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            clearInterval(interval); // Stop progress bar updates
+            progressBar.style.width = "100%";
+            progressBar.innerText = "100%";
+
+            if (data.success) {
+              formMessage.innerHTML = `<div class="alert alert-success">Message sent successfully!</div>`;
+              this.reset(); // Clear the form
+            } else {
+              formMessage.innerHTML = `<div class="alert alert-danger">Failed to send message. Please try again.</div>`;
+            }
+          })
+          .catch(() => {
+            clearInterval(interval);
+            formMessage.innerHTML = `<div class="alert alert-danger">Error sending message.</div>`;
+          });
+
+        // Auto-hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.innerHTML = "";
+        }, 5000);
+      });
     </script>
-</body>
+  </body>
 </html>
